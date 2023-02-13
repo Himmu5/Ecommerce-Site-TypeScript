@@ -10,7 +10,7 @@ type ProductListType = {
 }
 
 const ProductList:FC<ProductListType> = ({ totalproduct, updateCart })=> {
-  console.log("🚀 ~ file: ProductList.tsx ~ line 13 ~ totalproduct", totalproduct)  
+  
   const [quantityMap, setQuantityMap] = useState<CartType>({});
   
   const cartToQuantityMap = () =>

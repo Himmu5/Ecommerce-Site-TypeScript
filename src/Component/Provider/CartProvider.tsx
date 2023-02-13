@@ -14,7 +14,6 @@ type CartProviderType ={
 const CartProvider:FC<CartProviderType>=({ children, isLoggedIn })=> {
 
   const [totalproduct, settotalproduct] = useState<ResponseType[]>([]);
-  console.log("🚀 ~ file: CartProvider.tsx ~ line 10 ~ CartProvider ~ totalproduct", totalproduct)
  
 
   useEffect(() => {

@@ -4,7 +4,6 @@ import SearchNotFound from "../Error-Component/SearchNotFound";
 import { withCart } from "../Provider/WithProvider";
 import CartTotalP from "./CartTotal";
 import { ResponseType } from "../CommenType/Types";
-import Loading from "../Cards/Loading";
 
 type CartType = {
   totalproduct: ResponseType[];
@@ -24,7 +23,7 @@ const Cart: FC<CartType> = ({ totalproduct }) => {
     <>
       <div className=" max-w-5xl mx-auto font-bold text-gray-500 bg-white p-3 mt-10 mb-10 xl:p-10 shadow-xl ">
         <ProductList />
-        <div className=" ">
+        <div className="flex flex-col items-end ">
           <CartTotalP />
         </div>
       </div>
