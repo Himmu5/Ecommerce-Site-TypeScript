@@ -7,7 +7,7 @@ import DataNotFound from "../Error-Component/DataNotFound";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Helmet } from "react-helmet";
 import { memo } from "react";
-import { withCart } from "../../Provider/WithProvider";
+import { withCart } from "../Provider/WithProvider";
 import { Product } from '../CommenType/Types'
 
 type CardType = {
