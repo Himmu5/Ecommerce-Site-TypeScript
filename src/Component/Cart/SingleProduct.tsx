@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState ,ChangeEvent } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import React, { useCallback, useEffect } from "react";
+import React, {FC, useCallback, useEffect } from "react";
+import {Product} from '../CommenType/Types'
 
-export default function SingleProduct({ product, quantity, onQuantityChange ,onRemove }) {
+
+type SigleProduct = {
+  product:Product,
+  quantity:number,
+  onQuantityChange:(id:number , value:number)=>void;
+  onRemove:(id:number)=>void;
+}
+
+const SingleProduct:FC<SigleProduct> = ({ product, quantity, onQuantityChange ,onRemove })=> {
  
-  function handleChange(e) {
+  function handleChange(e:ChangeEvent<HTMLInputElement>) {
     onQuantityChange(product.id , +e.target.value);
   }
 
@@ -62,3 +71,5 @@ export default function SingleProduct({ product, quantity, onQuantityChange ,onR
     </>
   );
 }
+
+export default SingleProduct 

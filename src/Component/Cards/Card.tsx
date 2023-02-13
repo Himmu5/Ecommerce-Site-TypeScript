@@ -1,34 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC ,ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
 import { SingleProduct } from "../Api";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
-import DataNotFound from "../DataNotFound";
+import DataNotFound from "../Error-Component/DataNotFound";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { memo } from "react";
-import { withCart } from '../WithProvider'
+import { withCart } from "../../Provider/WithProvider";
+import { Product } from '../CommenType/Types'
 
- function Card({ addToCart }) {
+type CardType = {
+  addToCart: (num1: number, num2: number) => void;
+};
 
-  console.log("Card !!!");
-
-  const obj = useParams();
-  const id = obj.id;
-  const [product, setproduct] = useState();
+const Card: FC<CardType> = ({ addToCart }) => {
+  const id = useParams().id;
+  const [product, setproduct] = useState<Product>();
   const [loading, setLoading] = useState(true);
   const [count, setcount] = useState(1);
 
   function HandleAddToCart() {
-    addToCart(id, count);
-    setcount(1);
+    if (id) {
+      addToCart(+id, count);
+      setcount(1);
+    }
+
   }
 
   useEffect(() => {
     let token = SingleProduct(id);
     token
       .then((response) => {
-        
         setproduct(response.data);
         setLoading(true);
       })
@@ -39,8 +42,8 @@ import { withCart } from '../WithProvider'
   }, [id]);
   console.log(loading);
 
-  function handleOnChangeCartVal(e) {
-    setcount(e.target.value);
+  function handleOnChangeCartVal(e:ChangeEvent<HTMLInputElement>){
+    setcount(+e.target.value);
   }
 
   return product ? (
@@ -56,11 +59,7 @@ import { withCart } from '../WithProvider'
         />
       </Helmet>
 
-      <Helmet>
-
-        
-          
-      </Helmet>
+      
 
       <div className="flex flex-col max-w-5xl mx-auto mt-5 mb-10 px-5 sm:px-0 bg-white shadow-md">
         <Link
@@ -135,7 +134,6 @@ import { withCart } from '../WithProvider'
   ) : (
     <DataNotFound />
   );
-}
-
+};
 
 export default withCart(memo(Card));

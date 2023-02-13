@@ -1,11 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,FC } from "react";
 import SingleProducts from "./SingleProduct";
 import { useState } from "react";
-import { withCart } from "../WithProvider";
+import { withCart } from "../Provider/WithProvider";
+import { ResponseType ,CartType } from '../CommenType/Types'
 
-function ProductList({ totalproduct, updateCart }) {
-  const [quantityMap, setQuantityMap] = useState({});
+type ProductListType = {
+  totalproduct: ResponseType[],
+  updateCart :(C:CartType)=>void;
+}
 
+const ProductList:FC<ProductListType> = ({ totalproduct, updateCart })=> {
+  console.log("🚀 ~ file: ProductList.tsx ~ line 13 ~ totalproduct", totalproduct)  
+  const [quantityMap, setQuantityMap] = useState<CartType>({});
+  
   const cartToQuantityMap = () =>
     totalproduct.reduce((m, cartItem) => {
       return { ...m, [cartItem.product.id]: cartItem.quantity };
@@ -20,13 +27,13 @@ function ProductList({ totalproduct, updateCart }) {
     [totalproduct]
   );
 
-  function handleRemove(productid) {
+  function handleRemove(productid:number) {
     const newQuantityMap = { ...quantityMap };
     delete newQuantityMap[productid];
     updateCart(newQuantityMap);
   }
 
-  function handleChange(productId, newValue) {
+  function handleChange(productId:number, newValue:number) {
     const newLocalCart = { ...quantityMap, [productId]: newValue };
     setQuantityMap(newLocalCart);
   }

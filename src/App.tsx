@@ -1,21 +1,21 @@
-import Footer from "./Component/Footer";
-import Nav from "./Component/Nav";
+import Footer from "./Component/Ui-Component/Footer";
+import Nav from "./Component/Ui-Component/Nav";
 import MainContant from "./Component/MainContant";
-import Card from "./Component/Cards/Card";
-import {Routes , Route} from 'react-router-dom'
-import DataNotFound from "./Component/DataNotFound";
-import SignIn from "./Validation/SignIn";
-import SignUp from "./Validation/SignUp";
-import ResetPassword from "./Validation/ResetPassword";
+import { Routes, Route } from 'react-router-dom'
+import DataNotFound from "./Component/Error-Component/DataNotFound";
+import SignIn from "./Component/Validation/SignIn";
+import SignUp from "./Component/Validation/SignUp";
+import ResetPassword from "./Component/Validation/ResetPassword";
 import Cart from "./Component/Cart/Cart";
-import UserRoute from "./UserRoute";
-import AuthRoute from "./AuthRoute";
-import Alert from "./Component/Alert";
-import UserProvider from "./Provider/UserProvider";
-import AlertProvider from "./Provider/AlertProvider";
-import CartProvider from "./Provider/CartProvider";
+import AuthRoute from "./Component/Auth/AuthRoute";
+import Alert from "./Component/AlertStory/Alert";
+import UserProvider from "./Component/Provider/UserProvider";
+import AlertProvider from "./Component/Provider/AlertProvider";
+import CartProvider from "./Component/Provider/CartProvider";
+import ProductDetail from "./Component/Cards/ProductDetail";
+import Home from "./Component/Home-Page/Home-page/Home";
 
-function App() {  
+function App() {
   return (
     <>
       {/* <Test /> */}
@@ -23,16 +23,17 @@ function App() {
         <UserProvider>
           <CartProvider>
             <AlertProvider>
-              <Nav />
 
+              <Nav />
               <Alert />
 
               <div>
                 <Routes>
-                  <Route index element={<MainContant />}></Route>
+                  <Route index element={<Home />} />
+                  <Route path="/AllProducts" element={<MainContant />}></Route>
                   <Route
                     path="/Component/Cards/Card/:id/"
-                    element={<Card />}
+                    element={<ProductDetail />}
                   ></Route>
                   <Route path="*" element={<DataNotFound />}></Route>
                   <Route path="/component/Cart/Cart" element={<Cart />}></Route>

@@ -1,7 +1,15 @@
 import axios from "axios";
+import { CartType } from './CommenType/Types'
 
-export function ApiDataDummy(sort, Query, page, sortType) {
-  let param = {};
+type paramType ={
+  sortBy?:string;
+  sortType?:string;
+  search?:string;
+  page?:string
+}
+
+export function ApiDataDummy(sort?:string, Query?:string, page?:string, sortType?:string) {
+  let param:paramType = {};
   if (sort) {
     param.sortBy = sort;
   }
@@ -20,20 +28,20 @@ export function ApiDataDummy(sort, Query, page, sortType) {
   });
 }
 
-export function SingleProduct(id) {
-  return axios.get("https://myeasykart.codeyogi.io/product/" + id);
+export function SingleProduct(id?:string) {
+  return axios.get("https://myeasykart.codeyogi.io/product/" + (id && id));
 }
 
 // [1,2,3]
 
-export function getProductByIds(ids) {
+export function getProductByIds(ids:string[]) {
   const IdsArray = ids.join();
   return axios.get("https://myeasykart.codeyogi.io/products/bulk", {
     params: { ids: IdsArray },
   });
 }
 
-export function saveCart(cart) {
+export function saveCart(cart:CartType) {
   return axios
     .post(
       "https://myeasykart.codeyogi.io/carts",

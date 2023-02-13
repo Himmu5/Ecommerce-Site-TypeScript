@@ -1,10 +1,16 @@
 import React from "react";
 import { FcRating } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import { memo } from "react";
+import {FC, memo } from "react";
+import { Product } from '../CommenType/Types'
 
-function ContantCard({ data }) {
+
+type ContantCardType = {
+  data:Product
+}
+
+const ContantCard:FC<ContantCardType>=({ data })=> {
+  
   return (
     <div className="p-3 shadow-md">
     

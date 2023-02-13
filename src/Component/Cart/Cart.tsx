@@ -1,19 +1,24 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, FC } from "react";
 import ProductList from "./ProductList";
-import SearchNotFound from "../SearchNotFound";
-import Loading from "../Cards/Loading";
-import { getProductByIds } from "../Api";
-import { withCart } from "../WithProvider";
+import SearchNotFound from "../Error-Component/SearchNotFound";
+import { withCart } from "../Provider/WithProvider";
 import CartTotalP from "./CartTotal";
+import { ResponseType } from "../CommenType/Types";
+import Loading from "../Cards/Loading";
 
-function Cart({ totalproduct }) {
+type CartType = {
+  totalproduct: ResponseType[];
+};
+
+const Cart: FC<CartType> = ({ totalproduct }) => {
   // if (loading) {
   //   return <Loading />
   // }
 
-  if (totalproduct.length == 0) {
+  if (totalproduct?.length == 0) {
     return <SearchNotFound />;
   }
+  
 
   return (
     <>
@@ -25,6 +30,6 @@ function Cart({ totalproduct }) {
       </div>
     </>
   );
-}
+};
 
 export default withCart(memo(Cart));
