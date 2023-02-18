@@ -20,9 +20,9 @@ const HamMenu: FC<HemMenuType> = ({  user, LogOut }) => {
       <div className="pl-3 pt-1 pb-1  duration-500 border-b-2 hover:text-red-500">
         Home
       </div>
-      <div className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
+      <Link to={"/AllProducts"} className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
         ALL PRODUCTS
-      </div>
+      </Link>
       <div className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
         ABOUT
       </div>
