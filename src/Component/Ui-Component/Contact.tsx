@@ -12,15 +12,15 @@ const Contact:FC<P>=()=>{
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
         <div className='pt-1 bg-red-500 '></div>
         <div className='flex gap-2'>
-            <ImMap size={25}/>
+            <ImMap className='text-red-500' size={25}/>
             <p>212 7th St SE, Washington, DC 20003, USA</p>
         </div>
         <div className='flex gap-2'>
-            <MdOutlineMailOutline size={25}/>
+            <MdOutlineMailOutline className='text-red-500' size={25}/>
             <p>info@example.com</p>
         </div>
         <div className='flex gap-2'>
-            <MdPhoneEnabled size={25}/>
+            <MdPhoneEnabled className='text-red-500' size={25}/>
             <p>123-456-7890/91</p>
         </div>
     </div>
