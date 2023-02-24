@@ -23,12 +23,12 @@ const HamMenu: FC<HemMenuType> = ({  user, LogOut }) => {
       <Link to={"/AllProducts"} className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
         ALL PRODUCTS
       </Link>
-      <div className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
+      <Link to="/About" className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
         ABOUT
-      </div>
-      <div className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
+      </Link>
+      <Link to="/Contact" className="border-b-2 pl-3 pt-1 pb-1  duration-500 hover:text-red-500">
         CONTACT
-      </div>
+      </Link>
       <Link
         to="/component/validation/SignIn"
         className="pl-3  duration-500 pt-1 pb-1 hover:text-red-500"
