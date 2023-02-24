@@ -9,7 +9,7 @@ import {
 
 function Footer() {
   return (
-    <div className="bg-[#415161] text-white pt-5   ">
+    <div className="bg-[#415161] text-white pt-5  ">
       <div className="my-10 flex flex-col lg:flex-row justify-around gap-5 lg:gap-0 pt-5 pb-5 p-10">
         <div className="sm:flex justify-between gap-7">
           <div className="sm:w-56">

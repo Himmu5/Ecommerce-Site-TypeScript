@@ -80,7 +80,6 @@ const MainContant:FC=()=> {
   function handleOnchange(e:ChangeEvent<HTMLSelectElement>) {
     setSearchParams({ ...params, Query: e.target.value }, { replace: false });
   }
-
  
   if (loading) {
     return <Loading />;

@@ -2,8 +2,8 @@ import React, { FC, InputHTMLAttributes } from "react";
 
 type InputType =
    {
-      errors: string;
-      touched: string;
+      errors?: string;
+      touched?: string;
     } & InputHTMLAttributes<HTMLInputElement>
 
 const Input: FC<InputType> = ({ errors, touched, ...rest }) => {

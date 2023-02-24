@@ -52,8 +52,8 @@ console.log("🚀 ~ file: Nav.tsx ~ line 19 ~ user", user)
                 <Link to={"/AllProducts"} className="hover:text-red-400 hover:scale-105">
                   ALL PRODUCTS
                 </Link>
-                <p className="hover:text-red-400 hover:scale-105">ABOUT</p>
-                <p className="hover:text-red-400 hover:scale-105">CONTACT</p>
+                <Link className="hover:text-red-400 hover:scale-105 " to="/About">ABOUT</Link>
+                <Link to="/Contact" className="hover:text-red-400 hover:scale-105">CONTACT</Link>
                 <div className=" flex flex-col relative group ">
                   <div className="flex gap-1 items-center hover:text-red-400  hover:scale-105 ">
                     ACCOUNT <IoIosArrowDown />

@@ -14,6 +14,8 @@ import AlertProvider from "./Component/Provider/AlertProvider";
 import CartProvider from "./Component/Provider/CartProvider";
 import ProductDetail from "./Component/Cards/ProductDetail";
 import Home from "./Component/Home-Page/Home-page/Home";
+import About from "./Component/Cards/About";
+import Contact from "./Component/Ui-Component/Contact";
 
 function App() {
 
@@ -59,6 +61,14 @@ function App() {
                   <Route
                     path="/component/validation/ResetPassword"
                     element={<ResetPassword />}
+                  ></Route>
+                  <Route
+                    path="/Contact"
+                    element={<Contact />}
+                  ></Route>
+                  <Route
+                    path="/About"
+                    element={<About />}
                   ></Route>
                 </Routes>
               </div>
