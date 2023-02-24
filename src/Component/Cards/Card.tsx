@@ -1,5 +1,5 @@
-import React, { useEffect, useState, FC ,ChangeEvent } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, FC, ChangeEvent } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { SingleProduct } from "../Api";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
@@ -19,6 +19,7 @@ const Card: FC<CardType> = ({ addToCart }) => {
   const [product, setproduct] = useState<Product>();
   const [loading, setLoading] = useState(true);
   const [count, setcount] = useState(1);
+  const Navigation = useNavigate();
 
   function HandleAddToCart() {
     if (id) {
@@ -42,7 +43,7 @@ const Card: FC<CardType> = ({ addToCart }) => {
   }, [id]);
   console.log(loading);
 
-  function handleOnChangeCartVal(e:ChangeEvent<HTMLInputElement>){
+  function handleOnChangeCartVal(e: ChangeEvent<HTMLInputElement>) {
     setcount(+e.target.value);
   }
 
@@ -59,15 +60,15 @@ const Card: FC<CardType> = ({ addToCart }) => {
         />
       </Helmet>
 
-      
+
 
       <div className="flex flex-col max-w-5xl mx-auto mt-5 mb-10 px-5 sm:px-0 bg-white shadow-md">
-        <Link
-          to="/"
+        <button
+          onClick={() =>Navigation(-1) }
           className="self-start pl-1 pr-1 pt-1 pb-1 m-1 sm:m-2 hover:bg-blue-500  bg-red-400  rounded-full  "
         >
           <IoMdArrowRoundBack className="text-3xl text-white " />
-        </Link>
+        </button>
 
         <div className="  flex flex-col ">
           <div>

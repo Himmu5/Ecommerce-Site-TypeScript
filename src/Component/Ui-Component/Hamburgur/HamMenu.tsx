@@ -11,7 +11,7 @@ type HemMenuType = {
 const HamMenu: FC<HemMenuType> = ({  user, LogOut }) => {
  
   return (
-    <div className="border-2 sm:hidden  bg-white">
+    <div className="border-2 sm:hidden flex flex-col bg-white">
       {user && (
         <div className="pl-3 pt-1 pb-1  duration-500 border-b-2 hover:text-red-500">
           USER NAME : {user.full_name && user.full_name.toUpperCase()}
