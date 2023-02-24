@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes, FC } from "react";
 
 type P = {
   children: string;
-  extraClass : string
+  extraClass ?: string
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<P> = (props) => {
