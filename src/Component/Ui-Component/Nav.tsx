@@ -35,12 +35,13 @@ console.log("🚀 ~ file: Nav.tsx ~ line 19 ~ user", user)
 
   return (
     <div className="font-bold text-gray-600 ">
-      <div className=" bg-white pt-6 pb-6  pl-3 pr-3 shadow-md ">
+      <div className=" bg-white pt-6 pb-4 pl-3 pr-3 shadow-md ">
         <div className="flex justify-between items-center  max-w-6xl mx-auto">
           <Link to="/">
             <img
-              src="https://trycasuals.com/wp-content/uploads/2019/06/print-1-1.svg"
-              alt=""
+              src={"https://cdn.discordapp.com/attachments/1005675922403360880/1218544033543094353/logoShop.jpg?ex=66080c91&is=65f59791&hm=b1a0583f437aee96d0780f3959062ce9e8cb1a6188a8678145ba2bbf2ea5ba5a&"}
+              alt="logo"
+              className="h-10 object-cover"
             />
           </Link>
           <div className="flex  items-center space-x-8">

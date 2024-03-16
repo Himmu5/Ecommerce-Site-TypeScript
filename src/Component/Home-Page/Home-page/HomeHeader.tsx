@@ -16,7 +16,7 @@ const HomeHeader: FC<P> = () => {
             </div>
 
             <div className='1/2 py-5 sm:py-0'>
-                <img src="https://trycasuals.com/wp-content/uploads/2019/06/image26-free-1.png" alt="" />
+                <img src="https://images.pexels.com/photos/4350202/pexels-photo-4350202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
             </div>
         </div>
     </div>

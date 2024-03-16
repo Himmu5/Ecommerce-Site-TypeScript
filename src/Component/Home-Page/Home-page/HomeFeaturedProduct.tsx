@@ -23,7 +23,7 @@ const HomeFeaturedProduct: FC<P> = ({heading, products}) => {
             {
                 products.map((product) => {
                     return <div className='space-y-1'>
-                        <img src={product.img} className=" sm:max-w-sxs " alt="" />
+                        <img src={(product.img)} className=" sm:max-w-sxs h-3/5 border-2 p-1 w-full object-cover hover:scale-105 " alt="" />
                         <p className='text-sm text-gray-400 '>{product.category}</p>
                         <p className='font-bold '>{product.title}</p>
                         <div className='flex gap-1 text-red-500 '>

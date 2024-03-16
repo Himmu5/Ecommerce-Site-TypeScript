@@ -2,6 +2,7 @@ import { useState ,ChangeEvent } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import React, {FC, useCallback, useEffect } from "react";
 import {Product} from '../CommenType/Types'
+import convertImageUrl from "../../util/Converter";
 
 
 type SigleProduct = {
@@ -12,6 +13,7 @@ type SigleProduct = {
 }
 
 const SingleProduct:FC<SigleProduct> = ({ product, quantity, onQuantityChange ,onRemove })=> {
+  console.log("thumbnail: ",convertImageUrl(product.thumbnail));
  
   function handleChange(e:ChangeEvent<HTMLInputElement>) {
     onQuantityChange(product.id , +e.target.value);
@@ -29,7 +31,7 @@ const SingleProduct:FC<SigleProduct> = ({ product, quantity, onQuantityChange ,o
         </div>
 
         <div className="flex justify-center border-2 border-b-0 p-2 sm:hidden">
-          <img src={product.thumbnail} className="h-16 w-16" alt="" />
+          <img src={convertImageUrl(product.thumbnail)} className="h-16 w-16" alt="" />
         </div>
         <div className="flex justify-between border-2 border-b-0 p-2">
           <p>Product:</p>
@@ -53,7 +55,7 @@ const SingleProduct:FC<SigleProduct> = ({ product, quantity, onQuantityChange ,o
         <div className=" flex space-x-10 justify-between  items-center max-w-5xl mx-auto bg-white pt-2 pb-2 pl-4 pr-4 text-gray-500 font-bold">
           <div className="flex justify-between w-1/2 items-center">
             <AiOutlineCloseCircle className="text-3xl hover:text-red-500 hover:cursor-pointer"  onClick={RemoveProduct}/>
-            <img src={product.thumbnail} className="h-12 w-12" alt="" />
+            <img src={convertImageUrl(product.thumbnail)} className="h-12 w-12" alt="" />
             <p className="w-1/2">{product.title}</p>
           </div>
 

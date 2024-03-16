@@ -6,6 +6,9 @@ module.exports = {
       maxWidth: {
         sxs: "18rem",
       },
+      fontFamily: {
+        Poppins: ["Poppins", "sans-serif"],
+      },
       backgroundImage: {
         'mybackground': "url('https://img.freepik.com/premium-photo/isolated-shopping-trolley-cart-blue-background-copy-space-online-shopping-e-commerce-concept_50039-2338.jpg?w=2000')"
       },

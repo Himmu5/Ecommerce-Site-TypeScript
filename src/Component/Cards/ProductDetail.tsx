@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import Button from "../Ui-Component/Button/Button";
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { Link } from "react-router-dom";
+import convertImageUrl from "../../util/Converter";
 
 type Param = {
   id?:string
@@ -83,7 +84,7 @@ class ProductDetail extends Component<P,S> {
             <div className="sm:flex sm:gap-10 p-3 space-y-3 sm:space-y-0 sm:p-16 sm:pt-5 sm:pb-5">
               <div className=" aspect-square">
                 <img
-                  src={this.state.response.thumbnail}
+                  src={convertImageUrl(this.state.response.thumbnail)}
                   alt=""
                   className="h-full w-full object-cover sm:shadow-md "
                 />

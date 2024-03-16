@@ -3,6 +3,7 @@ import { FcRating } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import {FC, memo } from "react";
 import { Product } from '../CommenType/Types'
+import convertImageUrl from "../../util/Converter";
 
 
 type ContantCardType = {
@@ -18,7 +19,7 @@ const ContantCard:FC<ContantCardType>=({ data })=> {
       <div className=" aspect-square overflow-hidden">
         <img
           className="h-full w-full object-cover hover:scale-105"
-          src={data.thumbnail}
+          src={convertImageUrl(data?.thumbnail)}
           alt=""
         />
       </div>

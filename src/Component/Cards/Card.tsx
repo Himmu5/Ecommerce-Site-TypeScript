@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import { memo } from "react";
 import { withCart } from "../Provider/WithProvider";
 import { Product } from '../CommenType/Types'
+import convertImageUrl from "../../util/Converter";
 
 type CardType = {
   addToCart: (num1: number, num2: number) => void;
@@ -75,7 +76,7 @@ const Card: FC<CardType> = ({ addToCart }) => {
             <div className="sm:flex sm:gap-10 p-3 space-y-3 sm:space-y-0 sm:p-16 sm:pt-5 sm:pb-5">
               <div className=" aspect-square">
                 <img
-                  src={product.thumbnail}
+                  src={convertImageUrl(product?.thumbnail)}
                   alt=""
                   className="h-full w-full object-cover sm:shadow-md "
                 />

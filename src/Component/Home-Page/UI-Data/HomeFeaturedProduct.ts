@@ -1,26 +1,26 @@
 export const products = [
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/mug-white-4.jpg",
-    category: "Mugs",
-    title: "Black Printed Coffee Mug",
+    img: "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+    category: "smartphones",
+    title: "iPhone X",
     price: 15,
   },
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/mug-coffee-5.jpg",
+    img: "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
     category: "Mugs",
-    title: "Father Day Coffee Mug",
+    title: "Samsung Universe 9",
     price: 19,
   },
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/mug-yellow-4.jpg",
-    category: "Mugs",
-    title: "Personalized Mug",
+    img: "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+    category: "smartphones",
+    title: "OPPOF19",
     price: 15,
   },
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/mug-blue-4.jpg",
-    category: "Mugs",
-    title: "Valentine's Day Special Mug",
+    img: "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
+    category: "smartphones",
+    "title": "Huawei P30",
     price: 15,
   },
 ];
@@ -28,27 +28,27 @@ export const products = [
 
 export const LovedProduct = [
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/tshirt4-4.jpg",
-    category: "Tshirts",
-    title: "Green Printed Tshirt",
-    price: 34,
+    img: "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+    category: "smartphones",
+    title: "iPhone X",
+    price: 15,
   },
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/tshirt6-4.jpg",
-    category: "Tshirts",
-    title: "Printed Brown Tshirt",
-    price: 25,
+    img: "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+    category: "Mugs",
+    title: "Samsung Universe 9",
+    price: 19,
   },
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/tshirt2-4.jpg",
-    category: "Tshirts",
-    title: "Printed Dark Blue Tshirt",
-    price: 34,
+    img: "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+    category: "smartphones",
+    title: "OPPOF19",
+    price: 15,
   },
   {
-    img: "https://trycasuals.com/wp-content/uploads/2018/06/tshirt5-4.jpg",
-    category: "Tshirts",
-    title: "Printed Green Tshirt",
-    price: 28,
+    img: "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
+    category: "smartphones",
+    "title": "Huawei P30",
+    price: 15,
   },
-]
+];

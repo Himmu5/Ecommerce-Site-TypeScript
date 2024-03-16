@@ -59,7 +59,6 @@ const MainContant:FC=()=> {
       let mydata = ApiDataDummy(sortBy, searchQuery, page, sortType);
       mydata
         .then(function (response) {
-          console.log("🚀 ~ file: MainContant.tsx ~ line 49 ~ response", response.data)
           setApiData(response.data);
           setLoading(false);
         })
