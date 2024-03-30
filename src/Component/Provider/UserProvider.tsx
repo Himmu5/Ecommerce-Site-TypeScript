@@ -13,7 +13,7 @@ type User = {
   email:string;
 }
 
-
+const Base_url = "https://ecommercebackend1-n7nkxlhf.b4a.run"
 
 const UserProvider: FC<UserProviderType> = ({ children }) => {
   const [user, setUser] = useState<User>();
@@ -30,7 +30,7 @@ const UserProvider: FC<UserProviderType> = ({ children }) => {
   useEffect(() => {
     if (localToken) {
       axios
-        .get("https://myeasykart.codeyogi.io/me", {
+        .get(Base_url+"/me", {
           headers: {
             Authorization: localToken,
           },

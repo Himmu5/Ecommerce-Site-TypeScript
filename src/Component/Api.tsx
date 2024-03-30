@@ -7,6 +7,8 @@ type paramType = {
   search?: string;
   page?: string
 }
+// const Base_url = "https://myeasykart.codeyogi.io"
+const Base_url = "https://ecommercebackend1-n7nkxlhf.b4a.run"
 
 export function ApiDataDummy(sort?: string, Query?: string, page?: string, sortType?: string) {
   let param: paramType = {};
@@ -23,20 +25,20 @@ export function ApiDataDummy(sort?: string, Query?: string, page?: string, sortT
     param.page = page;
   }
 
-  return axios.get("https://myeasykart.codeyogi.io/products", {
+  return axios.get(Base_url+"/products", {
     params: param,
   });
 }
 
 export function SingleProduct(id?: string) {
-  return axios.get("https://myeasykart.codeyogi.io/product/" + (id && id));
+  return axios.get(Base_url+"/product/" + (id && id));
 }
 
 // [1,2,3]
 
 export function getProductByIds(ids: string[]) {
   const IdsArray = ids.join();
-  return axios.get("https://myeasykart.codeyogi.io/products/bulk", {
+  return axios.get(Base_url+"/products/bulk", {
     params: { ids: IdsArray },
   });
 }
@@ -44,7 +46,7 @@ export function getProductByIds(ids: string[]) {
 export function saveCart(cart: CartType) {
   return axios
     .post(
-      "https://myeasykart.codeyogi.io/carts",
+      Base_url+"/carts",
       { data: cart },
       {
         headers: {
@@ -59,7 +61,7 @@ export function saveCart(cart: CartType) {
 
 export function getCart() {
   return axios
-    .get("https://myeasykart.codeyogi.io/carts", {
+    .get(Base_url+"/carts", {
       headers: {
         Authorization: localStorage.getItem("token"),
       },

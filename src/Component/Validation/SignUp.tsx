@@ -21,10 +21,7 @@ type BagType ={
 }
 
 function submit(values:valuesType ,bag:BagType) {
-
-  console.log("🚀 ~ file: SignUp.tsx ~ line 27 ~ submit ~ bag", bag)
-  
-  axios.post("https://myeasykart.codeyogi.io/signup",{fullName:values.FULLNAME,email:values.EMAIL,password:values.PASSWORD}).then((response)=>{
+  axios.post("https://ecommercebackend1-n7nkxlhf.b4a.run/signup",{fullName:values.FULLNAME,email:values.EMAIL,password:values.PASSWORD}).then((response)=>{
     const {user , token}=response.data;
     bag.props.setUser(user);
     localStorage.setItem("token",token);

@@ -22,11 +22,11 @@ const schema = Yup.object().shape({
   email: Yup.string().email().required(),
   password: Yup.string().min(8).required(),
 });
-
+const Base_url = "https://ecommercebackend1-n7nkxlhf.b4a.run"
 function Submit(values: FormikValues, bag:FormikBag<initialValueType, FormikValues>) {
   console.log("bag is sending ", bag);
   axios
-    .post("https://myeasykart.codeyogi.io/login", {
+    .post(Base_url+"/login", {
       email: values.email,
       password: values.password,
     })
