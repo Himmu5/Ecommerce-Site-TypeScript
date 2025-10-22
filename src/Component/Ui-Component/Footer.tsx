@@ -18,15 +18,18 @@ function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
-              <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3">
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-3 shadow-lg">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold">Custom Print Store</h2>
+              <div className="flex flex-col">
+                <h2 className="text-2xl font-bold text-white">PrintCraft</h2>
+                <span className="text-sm text-gray-300 font-medium">Premium Printing Solutions</span>
+              </div>
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
-              Your trusted partner for premium custom printing services. We deliver 
+              Your trusted partner for premium custom printing services. PrintCraft delivers 
               high-quality products with exceptional customer service and fast turnaround times.
             </p>
             <div className="flex space-x-4">
@@ -121,7 +124,7 @@ function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Custom Print Store. All rights reserved.
+              © 2024 PrintCraft. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
