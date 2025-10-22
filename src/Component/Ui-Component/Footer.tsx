@@ -5,66 +5,139 @@ import {
   FaLinkedin,
   FaTwitter,
   FaInstagram,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="bg-[#415161] text-white pt-5  ">
-      <div className="my-10 flex flex-col lg:flex-row justify-around gap-5 lg:gap-0 pt-5 pb-5 p-10">
-        <div className="sm:flex justify-between gap-7">
-          <div className="sm:w-56">
-            <img
-              src="https://trycasuals.com/wp-content/uploads/2019/06/print-favicon-free-img-1.png"
-              alt=""
-            />
-            <div className="flex flex-col gap-7  mt-5">
-              <h1 className="text-2xl ">Custom Print Store</h1>
-              <div className="flex gap-7">
-                <FaFacebookSquare />
-                <FaLinkedin />
-                <FaTwitter />
-                <FaInstagram />
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center mb-6">
+              <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                </svg>
               </div>
+              <h2 className="text-2xl font-bold">Custom Print Store</h2>
+            </div>
+            <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
+              Your trusted partner for premium custom printing services. We deliver 
+              high-quality products with exceptional customer service and fast turnaround times.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <FaFacebookSquare size={24} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <FaLinkedin size={24} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <FaTwitter size={24} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <FaInstagram size={24} />
+              </a>
             </div>
           </div>
 
-          <div className="flex flex-col gap-5 sm:w-64 mt-5 lg:mt-0">
-            <h1 className="text-2xl">
-              Get in Touch with Us for the Best Quality Custom Prints &
-              Supplies.
-            </h1>
-            <p>
-              Qui dolore ipsum quia dolor sit amet, consec tetur adipisci velit,
-              sed quia non numquam eius modi tempora incidunt lores ta porro
-              ame.
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
+            <ul className="space-y-3">
+              <li>
+                <a href="/" className="text-gray-300 hover:text-white transition-colors duration-200">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/AllProducts" className="text-gray-300 hover:text-white transition-colors duration-200">
+                  All Products
+                </a>
+              </li>
+              <li>
+                <a href="/About" className="text-gray-300 hover:text-white transition-colors duration-200">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/Contact" className="text-gray-300 hover:text-white transition-colors duration-200">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="/component/Cart/Cart" className="text-gray-300 hover:text-white transition-colors duration-200">
+                  Shopping Cart
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Contact Info</h3>
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <FaMapMarkerAlt className="text-red-500 mr-3" />
+                <span className="text-gray-300">123 Print Street, Design City, DC 12345</span>
+              </div>
+              <div className="flex items-center">
+                <FaPhone className="text-red-500 mr-3" />
+                <span className="text-gray-300">+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center">
+                <FaEnvelope className="text-red-500 mr-3" />
+                <span className="text-gray-300">info@customprintstore.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Newsletter Signup */}
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="max-w-md mx-auto text-center">
+            <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
+            <p className="text-gray-300 mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+            <div className="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400"
+              />
+              <button className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-r-lg transition-colors duration-200">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © 2024 Custom Print Store. All rights reserved.
             </p>
-          </div>
-        </div>
-
-        <div className="sm:flex justify-between">
-          <div className=" sm:w-64">
-            <h1 className="text-2xl mb-5">Quick Links</h1>
-            <p>Know More About Us</p>
-            <p>Visit Store</p>
-            <p>Let’s Connect</p>
-          </div>
-
-          <div className="mt-5 lg:mt-0 sm:w-64">
-            <h1 className="text-2xl mb-5">Important Links</h1>
-            <p>Privacy Policy</p>
-            <p>Shipping Details</p>
-            <p>Terms & Conditions</p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+                Terms of Service
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+                Shipping Policy
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
-      <div className="border border-black py-10">
-        <div className="sm:flex justify-between  max-w-6xl mx-auto">
-          <p>Copyright © 2022 | Himanshu</p>
-          <p>Powered By Himanshu </p>
-        </div>
-      </div>
-    </div>
+    </footer>
   );
 }
 

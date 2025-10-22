@@ -18,8 +18,6 @@ const ProductList:FC<ProductListType> = ({ totalproduct, updateCart })=> {
       return { ...m, [cartItem.product.id]: cartItem.quantity };
     }, {});
 
-    console.log();
-
   useEffect(
     function () {
       setQuantityMap(cartToQuantityMap());
@@ -43,23 +41,20 @@ const ProductList:FC<ProductListType> = ({ totalproduct, updateCart })=> {
   }
 
   return (
-    <div className=" border-2 max-w-5xl mx-auto bg-white ">
-      <div className="hidden xl:block">
-        <div className="border-b-2 flex space-x-10 justify-between items-center  pt-2 pb-2 pl-4 pr-4 bg-gray-100 text-gray-500 font-bold">
-          <div className="flex justify-between w-1/2">
-            <div></div>
-            <div></div>
-            <p className="mr-40">Product</p>
-          </div>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Subtotal</p>
-        </div>
+    <div className="space-y-4">
+      {/* Desktop Table Header */}
+      <div className="hidden lg:grid lg:grid-cols-12 gap-4 py-4 px-6 bg-gray-50 rounded-lg text-sm font-semibold text-gray-600">
+        <div className="col-span-6">Product</div>
+        <div className="col-span-2 text-center">Price</div>
+        <div className="col-span-2 text-center">Quantity</div>
+        <div className="col-span-2 text-center">Subtotal</div>
       </div>
 
+      {/* Cart Items */}
       {totalproduct.map(function (item) {
         return (
           <SingleProducts
+            key={item.product.id}
             onRemove={handleRemove}
             onQuantityChange={handleChange}
             product={item.product}
@@ -67,20 +62,22 @@ const ProductList:FC<ProductListType> = ({ totalproduct, updateCart })=> {
           />
         );
       })}
-      <div className=" p-2 border-2 border-t-0 space-y-2 xl:space-y-0 xl:p-5 xl:flex xl:justify-between">
-        <div className="space-x-3 flex justify-between xl:justify-start ">
+
+      {/* Coupon and Update Cart */}
+      <div className="flex flex-col lg:flex-row lg:justify-between gap-4 pt-6 border-t border-gray-200">
+        <div className="flex gap-3">
           <input
             type="text"
             placeholder="Coupon code"
-            className="pl-3 pr-3 pt-1 pb-1 border-2"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
           />
-          <button className="pl-4 pr-4 pt-1 pb-1 bg-red-500 text-white  rounded-md">
+          <button className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors duration-200">
             APPLY COUPON
           </button>
         </div>
         <button
           onClick={updateMyCart}
-          className="flex justify-center w-full md:w-56 text-white bg-red-600 pt-2 pb-2 xl:pl-6 xl:pr-6 rounded-md cursor-pointer"
+          className="px-8 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-200 font-medium"
         >
           UPDATE CART
         </button>

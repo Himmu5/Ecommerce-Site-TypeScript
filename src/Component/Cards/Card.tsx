@@ -63,70 +63,105 @@ const Card: FC<CardType> = ({ addToCart }) => {
 
 
 
-      <div className="flex flex-col max-w-5xl mx-auto mt-5 mb-10 px-5 sm:px-0 bg-white shadow-md">
-        <button
-          onClick={() =>Navigation(-1) }
-          className="self-start pl-1 pr-1 pt-1 pb-1 m-1 sm:m-2 hover:bg-blue-500  bg-red-400  rounded-full  "
-        >
-          <IoMdArrowRoundBack className="text-3xl text-white " />
-        </button>
+      <div className="bg-white min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Back Button */}
+          <button
+            onClick={() => Navigation(-1)}
+            className="mb-6 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition-colors duration-200"
+          >
+            <IoMdArrowRoundBack className="text-2xl" />
+          </button>
 
-        <div className="  flex flex-col ">
-          <div>
-            <div className="sm:flex sm:gap-10 p-3 space-y-3 sm:space-y-0 sm:p-16 sm:pt-5 sm:pb-5">
-              <div className=" aspect-square">
+          {/* Breadcrumb */}
+          <nav className="mb-6 text-sm text-gray-500">
+            <span>Home / {product.category} / {product.title}</span>
+          </nav>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Product Image */}
+            <div className="relative">
+              <div className="aspect-square overflow-hidden rounded-lg">
                 <img
                   src={convertImageUrl(product?.thumbnail)}
-                  alt=""
-                  className="h-full w-full object-cover sm:shadow-md "
+                  alt={product.title}
+                  className="w-full h-full object-cover"
                 />
               </div>
+            </div>
 
-              <div className="text-gray-700 space-y-5 sm:w-1/2">
-                <p className="text-gray-400 text-sm">
-                  Home / {product.category} / {product.title}
-                </p>
-                <h1 className="text-4xl">{product.title}</h1>
-                <p className="text-xl font-bold">${product.price}.00</p>
-                <p>{product.description}</p>
-                <div className="flex gap-2">
+            {/* Product Details */}
+            <div className="space-y-6">
+              {/* Product Title */}
+              <h1 className="text-3xl font-bold text-gray-900">
+                {product.title}
+              </h1>
+
+              {/* Price */}
+              <div className="text-2xl font-bold text-gray-900">
+                ${product.price}.00
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-600 leading-relaxed">
+                {product.description}
+              </p>
+
+              {/* Quantity and Add to Cart */}
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center border border-gray-300 rounded-md">
+                  <button 
+                    onClick={() => setcount(Math.max(1, count - 1))}
+                    className="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 transition-colors duration-200"
+                  >
+                    -
+                  </button>
                   <input
                     type="number"
-                    className="w-12 pl-1 pr-1 pt-1 pb-1 border rounded-md"
+                    className="w-16 px-3 py-2 text-center border-0 focus:ring-0 focus:outline-none"
                     min={1}
                     value={count}
                     onChange={handleOnChangeCartVal}
-                    id=""
                   />
-                  <button
-                    className="pl-4 pr-4 pt-1 pb-1 rounded-md bg-red-400 text-white hover:bg-red-500"
-                    onClick={HandleAddToCart}
+                  <button 
+                    onClick={() => setcount(count + 1)}
+                    className="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 transition-colors duration-200"
                   >
-                    Add To Cart
+                    +
                   </button>
                 </div>
-                <hr />
-                <p>
-                  Category:
-                  <span className="text-red-400">{product.category}</span>
+                
+                <button
+                  onClick={HandleAddToCart}
+                  className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md font-medium transition-colors duration-200"
+                >
+                  Add To Cart
+                </button>
+              </div>
+
+              {/* Category */}
+              <div className="border-t border-gray-200 pt-4">
+                <p className="text-sm text-gray-600">
+                  Category: <span className="text-red-500 font-medium">{product.category}</span>
                 </p>
               </div>
             </div>
+          </div>
 
-            <div className="flex justify-between sm:pl-16 sm:pr-16 max-w-6xl mx-auto pl-3 pr-3 pb-5 pt-5">
-              <Link to={"/Component/Cards/Card/" + (+product.id - 1)}>
-                {+product.id > 1 && (
-                  <button className="pl-4 pr-4 pt-2 pb-2 text-white bg-red-400 hover:bg-blue-400 rounded-md">
-                    Previous
-                  </button>
-                )}
-              </Link>
-              <Link to={"/Component/Cards/Card/" + (+product.id + 1)}>
-                <button className="pl-4 pr-4 pt-2 pb-2 text-white bg-red-400 hover:bg-blue-400 rounded-md">
-                  Next
+          {/* Navigation */}
+          <div className="flex justify-between mt-8 pt-8 border-t border-gray-200">
+            <Link to={"/Component/Cards/Card/" + (+product.id - 1)}>
+              {+product.id > 1 && (
+                <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md transition-colors duration-200">
+                  Previous
                 </button>
-              </Link>
-            </div>
+              )}
+            </Link>
+            <Link to={"/Component/Cards/Card/" + (+product.id + 1)}>
+              <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md transition-colors duration-200">
+                Next
+              </button>
+            </Link>
           </div>
         </div>
       </div>

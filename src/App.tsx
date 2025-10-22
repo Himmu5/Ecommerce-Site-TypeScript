@@ -1,5 +1,5 @@
 import Footer from "./Component/Ui-Component/Footer";
-import Nav from "./Component/Ui-Component/Nav";
+import Nav from "./Component/Home-Page/Nav/Nav";
 import MainContant from "./Component/MainContant";
 import { Routes, Route } from 'react-router-dom'
 import DataNotFound from "./Component/Error-Component/DataNotFound";
@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       {/* <Test /> */}
-      <div className="bg-gray-100 font-Poppins selection:text-white selection:bg-red-500 ">
+      <div className="bg-white font-Poppins selection:text-white selection:bg-red-500 min-h-screen">
         <UserProvider>
           <CartProvider>
             <AlertProvider>

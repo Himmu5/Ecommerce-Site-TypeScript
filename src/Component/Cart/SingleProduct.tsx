@@ -4,7 +4,6 @@ import React, {FC, useCallback, useEffect } from "react";
 import {Product} from '../CommenType/Types'
 import convertImageUrl from "../../util/Converter";
 
-
 type SigleProduct = {
   product:Product,
   quantity:number,
@@ -13,7 +12,6 @@ type SigleProduct = {
 }
 
 const SingleProduct:FC<SigleProduct> = ({ product, quantity, onQuantityChange ,onRemove })=> {
-  console.log("thumbnail: ",convertImageUrl(product.thumbnail));
  
   function handleChange(e:ChangeEvent<HTMLInputElement>) {
     onQuantityChange(product.id , +e.target.value);
@@ -23,55 +21,79 @@ const SingleProduct:FC<SigleProduct> = ({ product, quantity, onQuantityChange ,o
     onRemove(product.id);
   }
 
-  return  (
-    <>
-      <div className=" text-gray-600 font-bold xl:hidden bg-white">
-        <div className="flex justify-end border-2 border-b-0 p-2">
-          <AiOutlineCloseCircle className="text-3xl hover:text-red-500 hover:cursor-pointer" onClick={RemoveProduct}/>
+  return (
+    <div className="bg-white rounded-lg border border-gray-200 p-4">
+      {/* Mobile Layout */}
+      <div className="lg:hidden space-y-4">
+        <div className="flex justify-between items-start">
+          <div className="flex items-center space-x-3">
+            <img 
+              src={convertImageUrl(product.thumbnail)} 
+              className="h-16 w-16 object-cover rounded-lg" 
+              alt={product.title} 
+            />
+            <div>
+              <h3 className="font-semibold text-gray-900">{product.title}</h3>
+              <p className="text-sm text-gray-600">${product.price}.00</p>
+            </div>
+          </div>
+          <button onClick={RemoveProduct} className="text-gray-400 hover:text-red-500 transition-colors duration-200">
+            <AiOutlineCloseCircle size={24} />
+          </button>
         </div>
-
-        <div className="flex justify-center border-2 border-b-0 p-2 sm:hidden">
-          <img src={convertImageUrl(product.thumbnail)} className="h-16 w-16" alt="" />
-        </div>
-        <div className="flex justify-between border-2 border-b-0 p-2">
-          <p>Product:</p>
-          <p className="text-red-400">{product.title}</p>
-        </div>
-        <div className="flex justify-between border-2 border-b-0 p-2">
-          <p>Price:</p>
-          <p>${product.price}.00</p>
-        </div>
-        <div className="flex justify-between border-2 border-b-0 p-2">
-          <p>Quantity:</p>
-          <input type="number" value={quantity} onChange={handleChange} className="border-2 w-12" />
-        </div>
-        <div className="flex justify-between border-2  p-2">
-          <p>Subtotal:</p>
-          <p>${quantity * product.price}</p>
+        
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <label className="text-sm text-gray-600">Quantity:</label>
+            <input 
+              type="number" 
+              value={quantity} 
+              onChange={handleChange} 
+              min="1"
+              className="w-16 px-2 py-1 border border-gray-300 rounded text-center"
+            />
+          </div>
+          <div className="text-right">
+            <p className="text-sm text-gray-600">Subtotal:</p>
+            <p className="font-semibold text-gray-900">${(quantity * product.price).toFixed(2)}</p>
+          </div>
         </div>
       </div>
 
-      <div className="hidden xl:block border-b-2">
-        <div className=" flex space-x-10 justify-between  items-center max-w-5xl mx-auto bg-white pt-2 pb-2 pl-4 pr-4 text-gray-500 font-bold">
-          <div className="flex justify-between w-1/2 items-center">
-            <AiOutlineCloseCircle className="text-3xl hover:text-red-500 hover:cursor-pointer"  onClick={RemoveProduct}/>
-            <img src={convertImageUrl(product.thumbnail)} className="h-12 w-12" alt="" />
-            <p className="w-1/2">{product.title}</p>
-          </div>
-
-          <p>${product.price}.00</p>
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid lg:grid-cols-12 gap-4 items-center">
+        <div className="col-span-6 flex items-center space-x-4">
+          <button onClick={RemoveProduct} className="text-gray-400 hover:text-red-500 transition-colors duration-200">
+            <AiOutlineCloseCircle size={20} />
+          </button>
+          <img 
+            src={convertImageUrl(product.thumbnail)} 
+            className="h-12 w-12 object-cover rounded-lg" 
+            alt={product.title} 
+          />
+          <h3 className="font-semibold text-gray-900">{product.title}</h3>
+        </div>
+        
+        <div className="col-span-2 text-center">
+          <p className="font-semibold text-gray-900">${product.price}.00</p>
+        </div>
+        
+        <div className="col-span-2 text-center">
           <input
             onChange={handleChange}
             type="number"
             value={quantity}
             min="1"
-            className="w-16 border-2"
+            className="w-16 px-2 py-1 border border-gray-300 rounded text-center focus:ring-2 focus:ring-red-500 focus:border-transparent"
           />
-          <p>${quantity * product.price}</p>
+        </div>
+        
+        <div className="col-span-2 text-center">
+          <p className="font-semibold text-gray-900">${(quantity * product.price).toFixed(2)}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-export default SingleProduct 
+export default SingleProduct;

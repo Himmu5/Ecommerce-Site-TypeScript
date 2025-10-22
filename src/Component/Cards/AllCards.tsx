@@ -13,7 +13,7 @@ type AllCardstype={
   return (
     <>
     
-    <div className="grid sm:grid-cols-3 gap-9  sm:p-20 sm:pt-5 sm:pb-5 mt-5 mb-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
      
       {
       data?.map(function(item){
