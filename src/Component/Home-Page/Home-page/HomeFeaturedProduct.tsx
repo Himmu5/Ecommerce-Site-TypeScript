@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
+import convertImageUrl from '../../../util/Converter'
 
 type P = {
     heading:string;
@@ -21,9 +22,9 @@ const HomeFeaturedProduct: FC<P> = ({heading, products}) => {
 
         <div className='grid grid-cols-2 gap-4 justify-center sm:justify-start p-4 sm:flex flex-wrap sm:gap-4 sm:px-10 my-5'>
             {
-                products.map((product) => {
-                    return <div className='space-y-1'>
-                        <img src={(product.img)} className=" sm:max-w-sxs h-3/5 border-2 p-1 w-full object-cover hover:scale-105 " alt="" />
+                products.map((product, index) => {
+                    return <div key={index} className='space-y-1'>
+                        <img src={convertImageUrl(product.img)} className=" sm:max-w-sxs h-3/5 border-2 p-1 w-full object-cover hover:scale-105 " alt="" />
                         <p className='text-sm text-gray-400 '>{product.category}</p>
                         <p className='font-bold '>{product.title}</p>
                         <div className='flex gap-1 text-red-500 '>

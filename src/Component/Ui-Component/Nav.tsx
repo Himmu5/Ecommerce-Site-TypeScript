@@ -38,11 +38,12 @@ console.log("🚀 ~ file: Nav.tsx ~ line 19 ~ user", user)
       <div className=" bg-white pt-6 pb-4 pl-3 pr-3 shadow-md ">
         <div className="flex justify-between items-center  max-w-6xl mx-auto">
           <Link to="/">
-            <img
-              src={"https://cdn.discordapp.com/attachments/1005675922403360880/1218544033543094353/logoShop.jpg?ex=66080c91&is=65f59791&hm=b1a0583f437aee96d0780f3959062ce9e8cb1a6188a8678145ba2bbf2ea5ba5a&"}
-              alt="logo"
-              className="h-10 object-cover"
-            />
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <span className="text-xl font-bold text-gray-800">ShopHub</span>
+            </div>
           </Link>
           <div className="flex  items-center space-x-8">
             <div className="hidden md:block  duration-500">

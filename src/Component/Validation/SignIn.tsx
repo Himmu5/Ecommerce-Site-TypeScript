@@ -6,7 +6,7 @@ import Input from "../Ui-Component/Input/Input";
 import axios from "axios";
 import WithUser from "../HOCs/WithUser";
 import WithAlert from "../HOCs/WithAlert";
-import { FormikValues, User,SignProp ,Signintypes ,AlertType} from "../CommenType/Types";
+import { FormikValues, User, SignProp, Signintypes, AlertType } from "../CommenType/Types";
 
 
 type bag= {
@@ -14,29 +14,85 @@ type bag= {
 }
 
 const initialValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
 const schema = Yup.object().shape({
-  email: Yup.string().email().required(),
+  username: Yup.string().required(),
   password: Yup.string().min(8).required(),
 });
-const Base_url = "https://ecommercebackend1-n7nkxlhf.b4a.run"
 function Submit(values: FormikValues, bag:FormikBag<initialValueType, FormikValues>) {
-  console.log("bag is sending ", bag);
+  // Use DummyJSON API for login
   axios
-    .post(Base_url+"/login", {
-      email: values.email,
+    .post("https://dummyjson.com/auth/login", {
+      username: values.username,
       password: values.password,
     })
     .then((response) => {
-      const { user, token } = response.data;
+      const { accessToken, id, username, email, firstName, lastName, gender, image } = response.data;
+      const user: User = {
+        id,
+        firstName,
+        lastName,
+        maidenName: '',
+        age: 0,
+        gender,
+        email,
+        phone: '',
+        username,
+        password: '',
+        birthDate: '',
+        image,
+        bloodGroup: '',
+        height: 0,
+        weight: 0,
+        eyeColor: '',
+        hair: { color: '', type: '' },
+        domain: '',
+        ip: '',
+        address: {
+          address: '',
+          city: '',
+          coordinates: { lat: 0, lng: 0 },
+          postalCode: '',
+          state: ''
+        },
+        macAddress: '',
+        university: '',
+        bank: {
+          cardExpire: '',
+          cardNumber: '',
+          cardType: '',
+          currency: '',
+          iban: ''
+        },
+        company: {
+          department: '',
+          name: '',
+          title: '',
+          address: {
+            address: '',
+            city: '',
+            coordinates: { lat: 0, lng: 0 },
+            postalCode: '',
+            state: ''
+          }
+        },
+        ein: '',
+        ssn: '',
+        userAgent: ''
+      };
       bag.props.setUser(user);
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", accessToken);
+      localStorage.setItem("user", JSON.stringify(user));
       bag.props.setAlert({ message: "LogIn Successful", type: "success" });
     })
     .catch((e) => {
+      console.error('Login error details:', e);
+      console.error('Error response:', e.response?.data);
+      console.error('Error status:', e.response?.status);
+      console.error('Error headers:', e.response?.headers);
       bag.props.setAlert({ message: "INVALID CREDENTIALS", type: "error" });
     });
 }
@@ -51,6 +107,10 @@ const SignIn: FC<Signintypes> = ({
   handleChange,
   handleBlur,
 }) => {
+  console.log("SignIn component rendered with values:", values);
+  console.log("SignIn component errors:", errors);
+  console.log("SignIn component touched:", touched);
+  
   return (
     <div className="shadow-xl mx-3 my-10 sm:p-20 p-4 space-y-5  text-sm font-bold bg-white text-gray-700 max-w-5xl md:mx-auto md:text-base">
       <h1 className="text-2xl ">Login</h1>
@@ -59,15 +119,15 @@ const SignIn: FC<Signintypes> = ({
         onSubmit={handleSubmit}
       >
         {/* <AiOutlineUser className="text-2xl relative top-[78px] left-3 " /> */}
-        <label htmlFor="email">Username or email address *</label>
+        <label htmlFor="username">Username *</label>
         <Input
-          id="email"
-          type="email"
-          name={"email"}
-          value={values.email}
+          id="username"
+          type="text"
+          name={"username"}
+          value={values.username}
           onChange={handleChange}
-          errors={errors.email}
-          touched={touched.email}
+          errors={errors.username}
+          touched={touched.username}
           onBlur={handleBlur}
         />
         <label htmlFor="pass">Password</label>
@@ -106,10 +166,10 @@ const SignIn: FC<Signintypes> = ({
       </form>
     </div>
   );
-};
+}
 
 type initialValueType = {
-  email:string,
+  username:string,
   password:string,
   setUser:(u:User)=>void,
   setAlert:(a:AlertType)=>void

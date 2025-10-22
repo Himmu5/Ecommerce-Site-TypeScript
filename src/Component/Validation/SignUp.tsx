@@ -21,13 +21,34 @@ type BagType ={
 }
 
 function submit(values:valuesType ,bag:BagType) {
-  axios.post("https://ecommercebackend1-n7nkxlhf.b4a.run/signup",{fullName:values.FULLNAME,email:values.EMAIL,password:values.PASSWORD}).then((response)=>{
-    const {user , token}=response.data;
+  // Use DummyJSON API for user creation
+  axios.post("https://dummyjson.com/users/add", {
+    firstName: values.FULLNAME.split(' ')[0] || values.FULLNAME,
+    lastName: values.FULLNAME.split(' ').slice(1).join(' ') || '',
+    email: values.EMAIL,
+    username: values.USERNAME,
+    password: values.PASSWORD
+  }).then((response) => {
+    const user = response.data;
+    // For DummyJSON, we need to login after registration to get token
+    return axios.post("https://dummyjson.com/user/login", {
+      username: values.USERNAME,
+      password: values.PASSWORD
+    });
+  }).then((loginResponse) => {
+    const { accessToken, id, username, email, firstName, lastName, gender, image } = loginResponse.data;
+    const user = {
+      id,
+      full_name: `${firstName} ${lastName}`,
+      email
+    };
     bag.props.setUser(user);
-    localStorage.setItem("token",token);
-    bag.props.setAlert({message:'Account Created Successful' , type:'success'})
-  }).catch((e)=>{
-    bag.props.setAlert({message:'Account not created' , type:'error'})
+    localStorage.setItem("token", accessToken);
+    localStorage.setItem("user", JSON.stringify(user)); // Store user data for UserProvider
+    bag.props.setAlert({message:'Account Created Successfully' , type:'success'})
+  }).catch((e) => {
+    console.error('Registration error:', e);
+    bag.props.setAlert({message:'Account not created. Please try again.' , type:'error'})
   })
 }
 

@@ -51,18 +51,18 @@ const CartProvider:FC<CartProviderType>=({ children, isLoggedIn })=> {
     }
   }
   function addToCart(productId:number, count:number) {
-    const quantityMap:CartType = totalproduct.reduce((m, cartItem) => {
+    const quantityMap:CartType = Array.isArray(totalproduct) ? totalproduct.reduce((m, cartItem) => {
       return { ...m, [cartItem.product.id]: cartItem.quantity };
-    }, {});
+    }, {}) : {};
 
     const olddata:number = quantityMap[productId] || 0;
     const newCart = { ...quantityMap, [productId]: +count + +olddata };
     updateCart(newCart);
   }
 
-  let CartTotal = totalproduct.reduce((output:number, current:ResponseType) => {
+  let CartTotal = Array.isArray(totalproduct) ? totalproduct.reduce((output:number, current:ResponseType) => {
     return output + + current.quantity;
-  }, 0);
+  }, 0) : 0;
 
   return (
     <div>

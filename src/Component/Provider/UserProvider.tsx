@@ -13,8 +13,6 @@ type User = {
   email:string;
 }
 
-const Base_url = "https://ecommercebackend1-n7nkxlhf.b4a.run"
-
 const UserProvider: FC<UserProviderType> = ({ children }) => {
   const [user, setUser] = useState<User>();
 
@@ -23,26 +21,27 @@ const UserProvider: FC<UserProviderType> = ({ children }) => {
     user
   );
 
-
   const [loading, setLoading] = useState<boolean>(true);
 
   const localToken = localStorage.getItem("token");
   useEffect(() => {
     if (localToken) {
-      axios
-        .get(Base_url+"/me", {
-          headers: {
-            Authorization: localToken,
-          },
-        })
-        .then((response) => {
-          setUser(response.data);
-          setLoading(false);
-        })
-        .catch(() => {
+      // For DummyJSON, we'll store user data in localStorage since there's no /me endpoint
+      // The user data is stored when they login/signup
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        try {
+          setUser(JSON.parse(storedUser));
+        } catch (e) {
+          console.error('Error parsing stored user:', e);
           localStorage.removeItem("token");
-          setLoading(false);
-        });
+          localStorage.removeItem("user");
+        }
+      } else {
+        // If no user data found, clear token
+        localStorage.removeItem("token");
+      }
+      setLoading(false);
     } else {
       setLoading(false);
     }

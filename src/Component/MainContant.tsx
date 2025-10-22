@@ -7,7 +7,7 @@ import SearchNotFound from "./Error-Component/SearchNotFound";
 import { range } from "lodash";
 import { Link, useSearchParams } from "react-router-dom";
 import { MdNavigateNext } from "react-icons/md";
-import { Product } from './CommenType/Types'
+import { Product, ProductsResponse } from './CommenType/Types'
 
 
 type paramType = {
@@ -21,8 +21,10 @@ type metaType ={
 }
 
 type ApiDataType = {
-  data:Product[],
-  meta:metaType
+  products:Product[],
+  total:number,
+  skip:number,
+  limit:number
 } 
 
 
@@ -56,7 +58,9 @@ const MainContant:FC=()=> {
         sortType = "desc";
       }
 
-      let mydata = ApiDataDummy(sortBy, searchQuery, page, sortType);
+      // Convert page to skip for DummyJSON API (page 1 = skip 0, page 2 = skip 30, etc.)
+      const skip = (+page - 1) * 30;
+      let mydata = ApiDataDummy(sortBy, searchQuery, skip.toString(), sortType);
       mydata
         .then(function (response) {
           setApiData(response.data);
@@ -117,11 +121,11 @@ const MainContant:FC=()=> {
           </div>
         </div>
 
-        {ApiData?.data.length === 0 && <SearchNotFound />}
-        <AllCards data={ApiData?.data} />
+        {ApiData?.products.length === 0 && <SearchNotFound />}
+        <AllCards data={ApiData?.products} />
 
         <div className="flex gap-3 p-3 pt-10 sm:pl-20 items-center text-white ">
-          { ApiData?.meta.first_page !== +page && (
+          { ApiData && ApiData.skip > 0 && (
             <Link to={"?" + new URLSearchParams({ ...params, page: (+page - 1).toString() })}>
               
               <MdNavigateNext
@@ -131,7 +135,7 @@ const MainContant:FC=()=> {
             </Link>
           )}
 
-          {range(1, (ApiData?.meta.last_page || 0 ) + 1).map((item) => {
+          {ApiData && range(1, Math.ceil(ApiData.total / ApiData.limit) + 1).map((item) => {
             return (
               <Link
                 key={item}
@@ -145,7 +149,7 @@ const MainContant:FC=()=> {
               </Link>
             );
           })}
-          {ApiData?.meta.last_page !== +page && (
+          {ApiData && (ApiData.skip + ApiData.limit) < ApiData.total && (
             <Link to={"?" + new URLSearchParams({ ...params, page: (+page + 1).toString() })}>
               
               <MdNavigateNext
