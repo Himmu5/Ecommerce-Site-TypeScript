@@ -12,10 +12,12 @@ import Alert from "./Component/AlertStory/Alert";
 import UserProvider from "./Component/Provider/UserProvider";
 import AlertProvider from "./Component/Provider/AlertProvider";
 import CartProvider from "./Component/Provider/CartProvider";
+import WishlistProvider from "./Component/Provider/WishlistProvider";
 import ProductDetail from "./Component/Cards/ProductDetail";
 import Home from "./Component/Home-Page/Home-page/Home";
 import About from "./Component/Cards/About";
 import Contact from "./Component/Ui-Component/Contact";
+import Wishlist from "./Component/Wishlist/Wishlist";
 
 function App() {
 
@@ -26,10 +28,11 @@ function App() {
       <div className="bg-white font-Poppins selection:text-white selection:bg-red-500 min-h-screen">
         <UserProvider>
           <CartProvider>
-            <AlertProvider>
+            <WishlistProvider>
+              <AlertProvider>
 
-              <Nav />
-              <Alert />
+                <Nav />
+                <Alert />
 
               <div>
                 <Routes>
@@ -41,6 +44,7 @@ function App() {
                   ></Route>
                   <Route path="*" element={<DataNotFound />}></Route>
                   <Route path="/component/Cart/Cart" element={<Cart />}></Route>
+                  <Route path="/wishlist" element={<Wishlist />}></Route>
 
                   <Route
                     path="/component/validation/SignIn"
@@ -72,7 +76,8 @@ function App() {
                   ></Route>
                 </Routes>
               </div>
-            </AlertProvider>
+              </AlertProvider>
+            </WishlistProvider>
           </CartProvider>
         </UserProvider>
         <Footer />

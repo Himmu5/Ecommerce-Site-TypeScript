@@ -1,8 +1,9 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useContext } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { BsHeart, BsEye } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import convertImageUrl from '../../../util/Converter'
+import { WishlistContext } from '../../Context/Context'
 
 type P = {
     heading: string;
@@ -16,6 +17,7 @@ type P = {
 
 const HomeFeaturedProduct: FC<P> = ({ heading, products }) => {
     const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+    const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
 
     return (
         <div className='bg-gray-50 py-16'>
@@ -46,7 +48,23 @@ const HomeFeaturedProduct: FC<P> = ({ heading, products }) => {
                                 {/* Overlay with actions */}
                                 <div className={`absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center`}>
                                     <div className={`opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-2`}>
-                                        <button className="bg-white text-gray-700 p-2 rounded-full hover:bg-red-500 hover:text-white transition-colors duration-200">
+                                        <button 
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                const productId = index + 1;
+                                                if (isInWishlist && isInWishlist(productId)) {
+                                                    removeFromWishlist && removeFromWishlist(productId);
+                                                } else {
+                                                    addToWishlist && addToWishlist(productId);
+                                                }
+                                            }}
+                                            className={`p-2 rounded-full transition-colors duration-200 ${
+                                                isInWishlist && isInWishlist(index + 1) 
+                                                    ? "bg-red-500 text-white" 
+                                                    : "bg-white text-gray-700 hover:bg-red-500 hover:text-white"
+                                            }`}
+                                        >
                                             <BsHeart size={16} />
                                         </button>
                                         <button className="bg-white text-gray-700 p-2 rounded-full hover:bg-red-500 hover:text-white transition-colors duration-200">

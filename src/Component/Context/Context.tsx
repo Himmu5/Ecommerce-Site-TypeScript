@@ -48,3 +48,19 @@ export const CartContext = createContext<CartContextType>({
   updateCart: undefined,
   addToCart: undefined,
 });
+
+type WishlistContextType = {
+  wishlistItems?: number[];
+  addToWishlist?: (productId: number) => void;
+  removeFromWishlist?: (productId: number) => void;
+  isInWishlist?: (productId: number) => boolean;
+  wishlistCount?: number;
+};
+
+export const WishlistContext = createContext<WishlistContextType>({
+  wishlistItems: undefined,
+  addToWishlist: undefined,
+  removeFromWishlist: undefined,
+  isInWishlist: undefined,
+  wishlistCount: undefined,
+});

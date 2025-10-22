@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsHeart, BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import {FC, memo } from "react";
 import { Product } from '../CommenType/Types'
 import convertImageUrl from "../../util/Converter";
+import { WishlistContext } from '../Context/Context';
 
 type ContantCardType = {
   data:Product
@@ -12,6 +13,7 @@ type ContantCardType = {
 
 const ContantCard:FC<ContantCardType>=({ data })=> {
   const [isHovered, setIsHovered] = useState(false);
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
   
   return (
     <div 
@@ -29,7 +31,22 @@ const ContantCard:FC<ContantCardType>=({ data })=> {
         {/* Overlay with actions */}
         <div className={`absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center`}>
           <div className={`opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-2`}>
-            <button className="bg-white text-gray-700 p-2 rounded-full hover:bg-red-500 hover:text-white transition-colors duration-200">
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isInWishlist && isInWishlist(data.id)) {
+                  removeFromWishlist && removeFromWishlist(data.id);
+                } else {
+                  addToWishlist && addToWishlist(data.id);
+                }
+              }}
+              className={`p-2 rounded-full transition-colors duration-200 ${
+                isInWishlist && isInWishlist(data.id) 
+                  ? "bg-red-500 text-white" 
+                  : "bg-white text-gray-700 hover:bg-red-500 hover:text-white"
+              }`}
+            >
               <BsHeart size={16} />
             </button>
             <button className="bg-white text-gray-700 p-2 rounded-full hover:bg-red-500 hover:text-white transition-colors duration-200">

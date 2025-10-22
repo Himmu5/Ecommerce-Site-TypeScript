@@ -2,7 +2,7 @@ import React, { FC, useState, useContext } from 'react'
 import { BsBag, BsSearch, BsPerson, BsHeart, BsList } from "react-icons/bs";
 import { Link, useLocation } from 'react-router-dom';
 import NavLinks from './NavLinks';
-import { CartContext } from '../../Context/Context';
+import { CartContext, WishlistContext } from '../../Context/Context';
 
 type P = {}
 const Nav: FC<P> = () => {
@@ -10,6 +10,7 @@ const Nav: FC<P> = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const location = useLocation();
     const { CartTotal } = useContext(CartContext);
+    const { wishlistCount } = useContext(WishlistContext);
 
     return (
         <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -36,9 +37,12 @@ const Nav: FC<P> = () => {
                         {/* Wishlist */}
                         <Link 
                             to="/wishlist" 
-                            className="p-2 text-gray-600 hover:text-red-500 transition-colors duration-200"
+                            className="relative p-2 text-gray-600 hover:text-red-500 transition-colors duration-200"
                         >
                             <BsHeart size={20} />
+                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                {wishlistCount || 0}
+                            </span>
                         </Link>
 
                         {/* Cart */}
