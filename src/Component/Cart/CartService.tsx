@@ -7,7 +7,7 @@ import {
   deleteCart 
 } from '../Api';
 import { Cart, CartItem } from '../CommenType/Types';
-import AuthService from './AuthService';
+import AuthService from '../Auth/AuthService';
 
 class CartService {
   private static instance: CartService;
@@ -193,7 +193,7 @@ class CartService {
   // Get current cart
   public getCart(): Cart | CartItem[] {
     const user = AuthService.getCurrentUser();
-    return user ? (this.currentCart || { products: [], total: 0, discountedTotal: 0, userId: user.id, totalProducts: 0, totalQuantity: 0 }) : this.localCart;
+    return user ? (this.currentCart || { id: 0, products: [], total: 0, discountedTotal: 0, userId: user.id, totalProducts: 0, totalQuantity: 0 }) : this.localCart;
   }
 
   // Get cart items count

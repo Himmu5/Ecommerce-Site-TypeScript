@@ -14,7 +14,7 @@ const HamMenu: FC<HemMenuType> = ({  user, LogOut }) => {
     <div className="border-2 sm:hidden flex flex-col bg-white">
       {user && (
         <div className="pl-3 pt-1 pb-1  duration-500 border-b-2 hover:text-red-500">
-          USER NAME : {user.full_name && user.full_name.toUpperCase()}
+          USER NAME : {user.firstName && user.lastName && `${user.firstName} ${user.lastName}`.toUpperCase()}
         </div>
       )}
       <Link to={"/"} className="pl-3 pt-1 pb-1  duration-500 border-b-2 hover:text-red-500">

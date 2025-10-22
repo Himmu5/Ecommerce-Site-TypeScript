@@ -6,7 +6,7 @@ import Input from "../Ui-Component/Input/Input";
 import axios from "axios";
 import WithUser from "../HOCs/WithUser";
 import WithAlert from "../HOCs/WithAlert";
-import { SignUptypes,valuesType,SignProp } from "../CommenType/Types"
+import { SignUptypes,valuesType,SignProp, User } from "../CommenType/Types"
 
 const initialValues = {
   FULLNAME: "",
@@ -37,10 +37,57 @@ function submit(values:valuesType ,bag:BagType) {
     });
   }).then((loginResponse) => {
     const { accessToken, id, username, email, firstName, lastName, gender, image } = loginResponse.data;
-    const user = {
+    const user: User = {
       id,
-      full_name: `${firstName} ${lastName}`,
-      email
+      firstName,
+      lastName,
+      maidenName: '',
+      age: 0,
+      gender: '',
+      email,
+      phone: '',
+      username: values.USERNAME,
+      password: '',
+      birthDate: '',
+      image: '',
+      bloodGroup: '',
+      height: 0,
+      weight: 0,
+      eyeColor: '',
+      hair: { color: '', type: '' },
+      domain: '',
+      ip: '',
+      address: {
+        address: '',
+        city: '',
+        coordinates: { lat: 0, lng: 0 },
+        postalCode: '',
+        state: ''
+      },
+      macAddress: '',
+      university: '',
+      bank: {
+        cardExpire: '',
+        cardNumber: '',
+        cardType: '',
+        currency: '',
+        iban: ''
+      },
+      company: {
+        department: '',
+        name: '',
+        title: '',
+        address: {
+          address: '',
+          city: '',
+          coordinates: { lat: 0, lng: 0 },
+          postalCode: '',
+          state: ''
+        }
+      },
+      ein: '',
+      ssn: '',
+      userAgent: ''
     };
     bag.props.setUser(user);
     localStorage.setItem("token", accessToken);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getAllTodos, createTodo, updateTodo, deleteTodo } from '../Api';
 import { Todo } from '../CommenType/Types';
 import AuthService from '../Auth/AuthService';
@@ -23,7 +24,7 @@ const Wishlist: React.FC = () => {
 
       const response = await getAllTodos(50); // Load more todos
       // Filter todos for current user and only completed ones (wishlist items)
-      const userTodos = response.data.todos.filter(todo => 
+      const userTodos = response.data.todos.filter((todo: Todo) => 
         todo.userId === user.id && todo.completed
       );
       setTodos(userTodos);
